@@ -59,7 +59,7 @@ Usage
 
 ```php
 $pheal = Yii::app()->phealng;
-// use in like Pheal
+// use it like you have direct access to Pheal object
 var_dump($pheal->accountScope->ApiKeyInfo()->toArray())
 ```
 

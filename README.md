@@ -53,6 +53,16 @@ In your application config in components section:
 	]
 ```
 
+Usage
+=====
+
+```
+#!php
+$pheal = Yii::app()->phealng;
+// use in like Pheal
+var_dump($pheal->accountScope->ApiKeyInfo()->toArray())
+```
+
 License
 =======
 CC-BY-SA 4.0 but I don't really care.

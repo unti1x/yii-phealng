@@ -1,8 +1,7 @@
 yii-phealng
 ===========
 
-Yii Wrapper for PhealNG
-
+PhealNG wrapper for Yii Framework
 
 Installation
 ============
@@ -10,13 +9,13 @@ Installation
 via Composer
 ------------
 
-```
+```bash
 composer require unti1x/yii-phealng
 ```
 
 or modify composer.json:
 
-```
+```json
 {
     "require": {
         "3rdpartyeve/phealng": "dev-master"
@@ -25,7 +24,7 @@ or modify composer.json:
 ```
 
 and then
-```
+```bash
 composer install
 ```
 
@@ -41,7 +40,8 @@ Configuration
 =============
 
 In your application config in components section:
-```
+```php
+[
 	'phealng' => [
 		'class' => 'ext.YiiPhealNG',
 		'pheal_class' => 'path/to/Pheal',
@@ -51,13 +51,13 @@ In your application config in components section:
 			'scope' => 'KEY SCOPE'
 		]
 	]
+]
 ```
 
 Usage
 =====
 
-```
-#!php
+```php
 $pheal = Yii::app()->phealng;
 // use in like Pheal
 var_dump($pheal->accountScope->ApiKeyInfo()->toArray())

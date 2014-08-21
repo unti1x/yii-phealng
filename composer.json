@@ -1,0 +1,14 @@
+{
+    "name": "unti1x/yii-phealng",
+    "description": "PhealNG Wrapper for Yii Framework",
+    "require": {
+        "3rdpartyeve/phealng": "dev-master"
+    },
+    "license": "CC-BY-SA",
+    "authors": [
+        {
+            "name": "unti1x",
+            "email": "metallist90@yahoo.com"
+        }
+    ]
+}

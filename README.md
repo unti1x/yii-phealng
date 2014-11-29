@@ -18,8 +18,7 @@ or modify composer.json:
 ```json
 {
     "require": {
-        "3rdpartyeve/phealng": "dev-master",
-        "unti1x/yii-phealng": "dev-master"
+        "unti1x/yii-phealng": "1.0.0"
     }
 }
 ```
@@ -29,7 +28,7 @@ and then
 composer install
 ```
 
-manual
+Manual
 ------
 
 Download and extract into your project's `protected/extensions` folder or
@@ -42,28 +41,44 @@ Configuration
 
 In your application config in components section:
 ```php
-[
-	'phealng' => [
-		'class' => 'ext.YiiPhealNG',
-		'pheal_class' => 'path/to/Pheal',
-		'config' => [
-			'keyID' => 'YOUR KEY ID HERE',
-			'vCode' => 'YOUT VERIFICATION CODE HERE',
-			'scope' => 'KEY SCOPE'
-		]
-	]
-]
+...
+'phealng' => array(
+    'class' => 'ext.YiiPhealNG',
+    'pheal_class' => 'path/to/Pheal',
+    'config' => (
+        'keyId' => 'YOUR KEY ID HERE',
+        'vCode' => 'YOUT VERIFICATION CODE HERE',
+        'scope' => 'KEY SCOPE'
+    )
+)
+...
+```
+ or
+```php
+...
+'phealng' => array(
+    'class' => 'ext.YiiPhealNG',
+    'phealPath' => 'path/to/Pheal',
+)
+...
 ```
 
 Usage
 =====
-
 ```php
 $pheal = Yii::app()->phealng;
 // use it like you have direct access to Pheal object
-var_dump($pheal->accountScope->ApiKeyInfo()->toArray())
+var_dump($pheal->accountScope->ApiKeyInfo()->toArray());
 ```
-
+or
+```php
+$pheal = Yii::app()->phealng;
+$pheal->config = array(
+    'keyId' => 'Your keyId',
+    'vCode' => 'Your vCode',
+);
+var_dump($pheal->accountScope->ApiKeyInfo()->toArray());
+```
 License
 =======
 CC-BY-SA 4.0 but I don't really care.

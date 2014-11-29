@@ -1,34 +1,80 @@
 <?php
 
+/**
+ * PhealNG wrapper for Yii Framework
+ *
+ * @author unti1x <metallist90@yahoo.com>, nek <nek@srez.org>
+ * @link https://github.com/3rdpartyeve/phealng
+ * @link https://community.eveonline.com/support/api-key/
+ * @link http://wiki.eve-id.net/APIv2_Page_Index
+ */
 class YiiPhealNG {
-	public $pheal_class;
 
-	public $config = [];
+    /**
+     * Version
+     *
+     * @var string
+     */
+    const VERSION = '1.0.0';
 
-	private $_pheal;
+    /**
+     * Pheal library path
+     *
+     * @var string
+     */
+    public $phealPath;
+    
+    /**
+     * <pre>
+     * array(
+     *     'keyId'  => 'Your keyId',
+     *     'vCode'  => 'Your vCode',
+     *     'scope'  => 'Enter scope'
+     * )
+     * </pre>
+     *
+     * @var array
+     */
+    public $config = array();
 
-	public function init() {
-		Yii::setPathOfAlias('Pheal', $this->pheal_class);
-		Yii::import('Pheal');
+    /**
+     * 
+     */
+    public function init() {
+        Yii::setPathOfAlias('Pheal', $this->phealPath);
+        Yii::import('Pheal');
+    }
+    
+    /**
+     * @param string $name
+     * @param mixed $parameters
+     * @return Pheal
+     */
+    public function __call($name, $parameters) {
+        $this->getInstance();
+        return call_user_func_array(array($this->getInstance(), $name), $parameters);
+    }
 
-		$cfg = [
-			  "keyID" => (isset($this->config['keyID']) ? $this->config['keyID'] : null)
-			, "vCode" => (isset($this->config['vCode']) ? $this->config['vCode'] : null)
-			, "scope" => (isset($this->config['scope']) ? $this->config['scope'] : "account")
-		];
+    /**
+     * @param string $name
+     * @return Pheal
+     */
+    public function __get($name) {
+        return $this->getInstance()->$name;
+    }
 
-		$this->config = $cfg;
-
-		$this->_pheal = new \Pheal\Pheal($this->config['keyID'], $this->config['vCode'], $this->config['scope']);
-
-	}
-
-	public function __call($name, $parameters) {
-		return call_user_func_array([$this->_pheal, $name], $parameters);
-	}
-
-	public function __get($name) {
-		return $this->_pheal->$name;
-	}
+    /**
+     * @return Pheal
+     */
+    private function getInstance() {
+        $config = array(
+            'keyId' => (isset($this->config['keyId']) ? $this->config['keyId'] : null),
+            'vCode' => (isset($this->config['vCode']) ? $this->config['vCode'] : null),
+            'scope' => (isset($this->config['scope']) ? $this->config['scope'] : 'account')
+        );
+        $this->config = $config;
+        $pheal = new \Pheal\Pheal($this->config['keyId'], $this->config['vCode'], $this->config['scope']);
+        return $pheal;
+    }
 
 }

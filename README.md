@@ -18,7 +18,6 @@ or modify composer.json:
 ```json
 {
     "require": {
-        "3rdpartyeve/phealng": "dev-master",
         "unti1x/yii-phealng": "dev-master"
     }
 }

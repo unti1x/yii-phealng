@@ -2,7 +2,7 @@
     "name": "unti1x/yii-phealng",
     "description": "PhealNG Wrapper for Yii Framework",
     "require": {
-        "3rdpartyeve/phealng": "dev-master"
+        "3rdpartyeve/phealng": "~2.2"
     },
     "license": "CC-BY-SA",
     "authors": [
